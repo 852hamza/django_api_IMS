@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>{{ employee_detail.name }}</h1>
+  <dl>
+    <dt>Employee Code:</dt>
+    <dd>{{ employee_detail.employee_code }}</dd>
+    <dt>Number:</dt>
+    <dd>{{ employee_detail.number }}</dd>
+    <dt>Email:</dt>
+    <dd>{{ employee_detail.email }}</dd>
+    <dt>Address:</dt>
+    <dd>{{ employee_detail.address }}</dd>
+    <dt>City:</dt>
+    <dd>{{ employee_detail.city }}</dd>
+    <dt>Age:</dt>
+    <dd>{{ employee_detail.age }}</dd>
+    <dt>Department Name:</dt>
+    <dd>{{ employee_detail.department_name }}</dd>
+  </dl>
+  <p>
+    <a href="{% url 'employee_detail_update' employee_detail.pk %}">Edit</a> |
+    <a href="{% url 'employee_detail_delete' employee_detail.pk %}" class="delete-link" data-employee-name="{{ employee_detail.name }}">Delete</a> |
+    <a href="{% url 'employee_detail_list' %}">Back to Employee Detail List</a>
+  </p>
+{% endblock %}
+
+{% block extra_js %}
+  <script>
+    // Confirm delete dialog for employee detail
+    var deleteLink = document.querySelector('.delete-link');
+    deleteLink.addEventListener('click', function(event) {
+      var employeeName = this.getAttribute('data-employee-name');
+      var confirmDelete = confirm('Are you sure you want to delete ' + employeeName + '?');
+      if (!confirmDelete) {
+        event.preventDefault();
+      }
+    });
+  </script>
+{% endblock %}
+

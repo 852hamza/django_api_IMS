@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}{% endblock %}</title>
+  <style>
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+    header ul {
+      list-style: none;
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+    header li {
+      margin-left: 10px;
+    }
+    header a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    footer {
+      background-color: #f2f2f2;
+      padding: 10px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Inventory Management System</h1>
+    <nav>
+      <ul>
+        <li><a href="{% url 'employee_detail_list' %}">Employees</a></li>
+        <li><a href="{% url 'product_list' %}">Products</a></li>
+        <li><a href="{% url 'employee_product_list' %}">Employee Products</a></li>
+        <li><a href="{% url 'department_list' %}">Departments</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+  <footer>
+    &copy; {% now "Y" %} Hamza 
+  </footer>
+</body>
+</html>

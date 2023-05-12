@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Employee Product Details</h1>
+  <table>
+    <tr>
+      <th>Employee Code:</th>
+      <td>{{ employee_product.employee_code }}</td>
+    </tr>
+    <tr>
+      <th>Product Tag:</th>
+      <td>{{ employee_product.product_tag }}</td>
+    </tr>
+    <tr>
+      <th>Quantity:</th>
+      <td>{{ employee_product.quantity }}</td>
+    </tr>
+    <tr>
+      <th>Date:</th>
+      <td>{{ employee_product.date }}</td>
+    </tr>
+  </table>
+  <p><a href="{% url 'employee_product_update' pk=employee_product.pk %}">Update this employee product</a></p>
+  <p><a href="{% url 'employee_product_list' %}">Return to the employee product list</a></p>
+{% endblock %}
