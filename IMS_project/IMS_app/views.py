@@ -1,7 +1,9 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Department, EmployeeDetail, Product, EmployeeProduct
+from IMS_app.models import Department, EmployeeDetail, Product, EmployeeProduct
 from .forms import DepartmentForm, EmployeeDetailForm, ProductForm, EmployeeProductForm
 
+def base(request):
+    return render(request, 'base.html')
 # Department Views
 def department_list(request):
     departments = Department.objects.all()

@@ -17,10 +17,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from IMS_app import views
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     # Your project's URLs go here...
-    path('IMS_app/', include('IMS_app.urls')),
+    path('', include('IMS_app.urls')),
+    path('', views.base, name='base'),
 
 ]

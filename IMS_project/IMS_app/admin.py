@@ -3,7 +3,7 @@ from .models import EmployeeDetail, Department, Product, EmployeeProduct
 from .views import *
 
 class EmployeeDetailAdmin(admin.ModelAdmin):
-    list_display = ('employee_code', 'name', 'number', 'email', 'address', 'city', 'age', 'department_name')
+    list_display = ('employee_code', 'name', 'number', 'email', 'address', 'city', 'age', 'department')
 
 class DepartmentAdmin(admin.ModelAdmin):
     list_display = ('id', 'name')

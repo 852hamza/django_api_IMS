@@ -11,7 +11,7 @@ class DepartmentForm(forms.ModelForm):
 class EmployeeDetailForm(forms.ModelForm):
     class Meta:
         model = EmployeeDetail
-        fields = ('employee_code', 'name', 'number', 'email', 'address', 'city', 'age', 'department_name')
+        fields = ('employee_code', 'name', 'number', 'email', 'address', 'city', 'age', 'department')
 
 class ProductForm(forms.ModelForm):
     class Meta:

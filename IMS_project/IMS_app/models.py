@@ -27,10 +27,11 @@ class Product(models.Model):
     class Meta:
         app_label = 'IMS_app'
 class EmployeeProduct(models.Model):
-    employee_detail = models.ForeignKey(EmployeeDetail, on_delete=models.CASCADE)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    employee_code = models.ForeignKey(EmployeeDetail, on_delete=models.CASCADE)
+    product_tag = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField()
     date = models.DateField()
-
+    def __str__(self):
+        return f"{self.employee_code} - {self.product_tag} - {self.quantity} - {self.date}"
     class Meta:
         app_label = 'IMS_app'
