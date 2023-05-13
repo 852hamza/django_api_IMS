@@ -10,4 +10,5 @@
     {% csrf_token %}
     <input type="submit" value="Delete">
   </form>
+  <a href="{% url 'product_list' %}">Back to Product List</a>
 {% endblock %}

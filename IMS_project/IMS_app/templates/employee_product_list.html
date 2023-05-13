@@ -21,7 +21,7 @@
           <td>{{ employee_product.product_tag }}</td>
           <td>{{ employee_product.quantity }}</td>
           <td>{{ employee_product.date }}</td>
-          <td><a href="{% url 'employee_product_update' pk=employee_product.pk %}">Update</a></td>
+          <td><a href="{% url 'employee_product_update' pk=employee_product.pk %}">Edit</a></td>
           <td><a href="{% url 'employee_product_delete' pk=employee_product.pk %}">Delete</a></td>
         </tr>
       {% empty %}

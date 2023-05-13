@@ -1,13 +1,41 @@
-{% extends 'base.html' %}
-
-{% block content %}
-  <h1>Product List</h1>
-  <a href="{% url 'product_create' %}">Create Product</a>
-  <ul>
-  {% for product in products %}
-    <li><a href="{% url 'product_detail' product.pk %}">{{ product.product_type }}</a></li>
-  {% empty %}
-    <li>No products yet.</li>
-  {% endfor %}
-  </ul>
+{% extends 'base.html' %} {% block content %}
+<h1>Product List</h1>
+<a href="{% url 'product_create' %}">Create Product</a>
+<table>
+  <thead>
+    <tr>
+      <th>Employee_code</th>
+      <th>Product Tag</th>
+      <th>Quantity</th>
+      <th>Purchase_Date</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for product in products %}
+    <tr>
+      <td>{{ product.product_tag}}</td>
+      <td>{{ product.product_type }}</td>
+      <td>{{ product.quantity }}</td>
+      <td>{{ product.purchase_date }}</td>
+      {% comment %}
+      <a href="{% url 'product_detail' product.pk %}"
+        >{{ product.product_type }}</a
+      >
+      {% endcomment %}
+      <td>
+        <a href="{% url 'product_update' pk=product.pk %}">Edit</a>
+      </td>
+      <td>
+        <a href="{% url 'product_delete' pk=product.pk %}">Delete</a>
+      </td>
+    </tr>
+    {% empty %}
+    <tr>
+      <td colspan="6">No employee products found.</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
 {% endblock %}

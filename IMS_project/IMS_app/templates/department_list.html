@@ -1,16 +1,35 @@
-{% extends 'base.html' %}
-
-{% block content %}
-  <h1>Department List</h1>
-  <ul>
+{% extends 'base.html' %} {% block content %}
+<h1>Department List</h1>
+<a href="{% url 'department_create' %}">Create New Department</a>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Department_name</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
     {% for department in departments %}
-      <li>
-        <a href="{% url 'department_detail' department.pk %}">{{ department.name }}</a>
-      </li>
+    <tr>
+      <td>{{ department.id}}</td>
+      <td>{{ department.name}}</td>
+      {% comment %}
+      <td>{{ department.product_type }}</td>
+      <a href="{% url 'department_detail' department.pk %}"
+        >{{ department.name }}</a
+      >
+      {% endcomment %}
+      <td>
+        <a href="{% url 'department_update' pk=department.pk %}">Edit</a>
+      </td>
+      <td>
+        <a href="{% url 'department_delete' pk=department.pk %}">Delete</a>
+      </td>
+    </tr>
     {% empty %}
-      <li>No departments yet.</li>
-    {% endfor %}
-  </ul>
-  <a href="{% url 'department_create' %}">Create New Department</a>
-{% endblock %}
-
+    <li>No departments yet.</li>
+    {% endfor %} {% endblock %}
+  </tbody>
+</table>
