@@ -17,6 +17,9 @@ class EmployeeDetail(models.Model):
     city = models.CharField(max_length=50)
     age = models.PositiveSmallIntegerField()
     department = models.ForeignKey(Department, on_delete=models.CASCADE, related_name='employees')
+    
+    def __str__(self):
+        return self.employee_code 
 
     class Meta:
         app_label = 'IMS_app'
@@ -25,6 +28,9 @@ class Product(models.Model):
     product_type = models.CharField(max_length=50)
     quantity = models.PositiveIntegerField()
     purchase_date = models.DateField()
+    
+    def __str__(self):
+        return self.product_tag 
 
     class Meta:
         app_label = 'IMS_app'
