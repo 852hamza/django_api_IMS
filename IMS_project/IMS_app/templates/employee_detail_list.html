@@ -1,34 +1,57 @@
-{% extends 'base.html' %}
-
-{% block content %}
-  <h1>Employee Details</h1>
-  <a href="{% url 'employee_detail_create' %}">Add Employee Detail</a>
-  <ul>
-    {% for employee_detail in employee_details %}
+{% extends 'base.html' %} {% block content %}
+<h1>Employee Details</h1>
+<a href="{% url 'employee_detail_create' %}">Add Employee Detail</a>
+<ul>
+  <table>
+    <thead>
+      <tr>
+        <th>Employee Name</th>
+        {% comment %} <th>Department Name</th> {% endcomment %}
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for employee in employees %}
       <li>
-        <a href="{% url 'employee_detail_detail' employee_detail.pk %}">{{ employee_detail.name }}</a>
-        (<a href="{% url 'employee_detail_update' employee_detail.pk %}">Edit</a>,
-        <a href="{% url 'employee_detail_delete' employee_detail.pk %}" class="delete-link" data-employee-name="{{ employee_detail.name }}">Delete</a>)
+        <tr>
+        <td>{{ employee.name }}</td>
+          {% comment %} <td>{{ employee.department_name }}</td> {% endcomment %}
+          <td>
+        {% comment %} <a href="{% url 'employee_detail_detail' employee.pk %}"
+          >{{ employee.name }}</a
+        > {% endcomment %}
+        (<a href="{% url 'employee_detail_update' employee.pk %}">Edit</a>,
+        <a
+          href="{% url 'employee_detail_delete' employee.pk %}"
+          class="delete-link"
+          data-employee-name="{{ employee_detail.name }}"
+          >Delete</a
+        >)
+        </td>
+        </tr>
       </li>
-    {% empty %}
+    </tbody>
+  </table>
+
+      {% empty %}
       <li>No employee details found.</li>
-    {% endfor %}
-  </ul>
+      {% endfor %}
+  </table>
+</ul>
+{% endblock %} {% block extra_js %}
+<script>
+  // Confirm delete dialog for employee detail
+  var deleteLinks = document.querySelectorAll(".delete-link");
+  for (var i = 0; i < deleteLinks.length; i++) {
+    deleteLinks[i].addEventListener("click", function (event) {
+      var employeeName = this.getAttribute("data-employee-name");
+      var confirmDelete = confirm(
+        "Are you sure you want to delete " + employeeName + "?"
+      );
+      if (!confirmDelete) {
+        event.preventDefault();
+      }
+    });
+  }
+</script>
 {% endblock %}
-
-{% block extra_js %}
-  <script>
-    // Confirm delete dialog for employee detail
-    var deleteLinks = document.querySelectorAll('.delete-link');
-    for (var i = 0; i < deleteLinks.length; i++) {
-      deleteLinks[i].addEventListener('click', function(event) {
-        var employeeName = this.getAttribute('data-employee-name');
-        var confirmDelete = confirm('Are you sure you want to delete ' + employeeName + '?');
-        if (!confirmDelete) {
-          event.preventDefault();
-        }
-      });
-    }
-  </script>
-{% endblock %}
-

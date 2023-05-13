@@ -19,8 +19,8 @@
     <dd>{{ employee_detail.department_name }}</dd>
   </dl>
   <p>
-    <a href="{% url 'employee_detail_update' employee_detail.pk %}">Edit</a> |
-    <a href="{% url 'employee_detail_delete' employee_detail.pk %}" class="delete-link" data-employee-name="{{ employee_detail.name }}">Delete</a> |
+    <a href="{% url 'employee_detail_update' employee_detail.pk %}">Edit</a> 
+    <a href="{% url 'employee_detail_delete' employee_detail.pk %}" class="delete-link" data-employee-name="{{ employee_detail.name }}">Delete</a> 
     <a href="{% url 'employee_detail_list' %}">Back to Employee Detail List</a>
   </p>
 {% endblock %}

@@ -47,8 +47,9 @@ def employee_detail_list(request):
     return render(request, 'employee_detail_list.html', {'employees': employees})
 
 def employee_detail_detail(request, pk):
-    employee = get_object_or_404(EmployeeDetail, pk=pk)
-    return render(request, 'employee_detail_detail.html', {'employee': employee})
+    employee_detail = get_object_or_404(EmployeeDetail, pk=pk)
+    return render(request, 'employee_detail_detail.html', {'employee_detail': employee_detail})
+
 
 def employee_detail_create(request):
     if request.method == 'POST':

@@ -2,10 +2,10 @@
 
 {% block content %}
   <h1>Delete Employee Detail</h1>
-  <p>Are you sure you want to delete "{{ employee_detail.name }}"?</p>
+  <p>Are you sure you want to delete "{{ employee.name }}"?</p>
   <form method="post">
     {% csrf_token %}
     <button type="submit">Delete</button>
-    <a href="{% url 'employee_detail_detail' employee_detail.pk %}">Cancel</a>
+    <a href="{% url 'employee_detail_detail' employee.pk %}">Cancel</a>
   </form>
 {% endblock %}
