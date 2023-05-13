@@ -5,8 +5,9 @@
   <table>
     <thead>
       <tr>
-        <th>Employee Name</th>
-        {% comment %} <th>Department Name</th> {% endcomment %}
+        <th>Employee_Name</th>
+        <th>Department_Name</th>
+        <th>Employee_code</th>
         <th>Action</th>
       </tr>
     </thead>
@@ -15,7 +16,8 @@
       <li>
         <tr>
         <td>{{ employee.name }}</td>
-          {% comment %} <td>{{ employee.department_name }}</td> {% endcomment %}
+          <td>{{ employee.department.name }}</td>
+          <td>{{ employee.employee_code }}</td>
           <td>
         {% comment %} <a href="{% url 'employee_detail_detail' employee.pk %}"
           >{{ employee.name }}</a
