@@ -29,6 +29,9 @@ urlpatterns = [
     path('employee-products/create/', views.employee_product_create, name='employee_product_create'),
     path('employee-products/<int:pk>/update/', views.employee_product_update, name='employee_product_update'),
     path('employee-products/<int:pk>/delete/', views.employee_product_delete, name='employee_product_delete'),
+
+    # search url
+    path('live-search/', views.live_search, name='live_search'),
 ]
 
 

@@ -1,9 +1,24 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.db.models import Q
 from IMS_app.models import Department, EmployeeDetail, Product, EmployeeProduct
 from .forms import DepartmentForm, EmployeeDetailForm, ProductForm, EmployeeProductForm
 
 def base(request):
     return render(request, 'base.html')
+
+# search bar
+def live_search(request):
+    query = request.GET.get('query', '')
+    employee_results = EmployeeDetail.objects.filter(Q(employee_code=query) | Q(name__icontains=query))
+    product_results = Product.objects.filter(Q(product_tag=query) | Q(product_type__icontains=query))
+
+    context = {
+        'query': query,
+        'employee_results': employee_results,
+        'product_results': product_results
+    }
+    return render(request, 'live_search_results.html', context)
+
 # Department Views
 def department_list(request):
     departments = Department.objects.all()

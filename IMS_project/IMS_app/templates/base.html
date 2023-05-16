@@ -51,7 +51,9 @@
         </ul>
       </nav>
     </header>
-    <main>{% block content %}{% endblock %}</main>
+    <main>{% block content %}{% include 'search.html' %}
+
+{% endblock %}</main>
     <footer>&copy; {% now "Y" %} Hamza</footer>
   </body>
 </html>
