@@ -18,10 +18,10 @@ urlpatterns = [
     
     # Product URLs
     path('products/', views.product_list, name='product_list'),
-    path('products/<int:pk>/', views.product_detail, name='product_detail'),
+    path('products/<str:pk>//', views.product_detail, name='product_detail'),
     path('products/create/', views.product_create, name='product_create'),
-    path('products/<int:pk>/update/', views.product_update, name='product_update'),
-    path('products/<int:pk>/delete/', views.product_delete, name='product_delete'),
+    path('products/<str:pk>/update/', views.product_update, name='product_update'),
+    path('products/<str:pk>/delete/', views.product_delete, name='product_delete'),
     
     # EmployeeProduct URLs
     path('employee-products/', views.employee_product_list, name='employee_product_list'),
