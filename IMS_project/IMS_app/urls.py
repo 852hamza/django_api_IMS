@@ -32,6 +32,8 @@ urlpatterns = [
 
     # search url
     path('live-search/', views.live_search, name='live_search'),
+    
+    path('', views.home, name='home'),
 ]
 
 

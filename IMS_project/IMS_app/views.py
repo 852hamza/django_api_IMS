@@ -6,6 +6,16 @@ from .forms import DepartmentForm, EmployeeDetailForm, ProductForm, EmployeeProd
 def base(request):
     return render(request, 'base.html')
 
+def home(request):
+    total_employees = EmployeeDetail.objects.count()
+    total_products = Product.objects.count()
+    total_assigned_products = EmployeeProduct.objects.count()
+
+    return render(request, 'home.html', {
+        'total_employees': total_employees,
+        'total_products': total_products,
+        'total_assigned_products': total_assigned_products
+    })
 # search bar
 def live_search(request):
     query = request.GET.get('query', '')
