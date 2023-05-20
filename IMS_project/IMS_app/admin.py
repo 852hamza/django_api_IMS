@@ -1,11 +1,11 @@
 from django.contrib import admin
-from .models import EmployeeDetail, Department, Product, EmployeeProduct
+from .models import EmployeeDetail, Team, Product, EmployeeProduct
 from .views import *
 
 class EmployeeDetailAdmin(admin.ModelAdmin):
-    list_display = ('employee_code', 'name', 'number', 'email', 'address', 'city', 'age', 'department')
+    list_display = ('employee_code', 'name', 'number', 'email', 'address', 'city', 'age', 'team')
 
-class DepartmentAdmin(admin.ModelAdmin):
+class teamAdmin(admin.ModelAdmin):
     list_display = ('id', 'name')
 
 class ProductAdmin(admin.ModelAdmin):
@@ -15,7 +15,7 @@ class EmployeeProductAdmin(admin.ModelAdmin):
     list_display = ('id', 'employee_code', 'product_tag', 'quantity', 'issue_date')
 
 admin.site.register(EmployeeDetail, EmployeeDetailAdmin)
-admin.site.register(Department, DepartmentAdmin)
+admin.site.register(Team, teamAdmin)
 admin.site.register(Product, ProductAdmin)
 admin.site.register(EmployeeProduct, EmployeeProductAdmin)
 

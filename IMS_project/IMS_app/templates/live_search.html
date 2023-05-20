@@ -1,0 +1,21 @@
+{% for product in products %}
+<p>
+    product Tag: <a href="{% url 'product_list' %}">{{ product.product_tag }}</a>
+</p>
+<p>Manufacture_By: {{ product.manufacture_by }}</p>
+<p>Capacity: {{ product.product_capacity }}</p>
+<p>Type: {{ product.product_type }}</p>
+{% empty %}
+<p>No matching products found.</p>
+{% endfor %}
+
+<hr />
+
+{% for employee in employees %}
+<p>
+    Employee Code:<a href="{% url 'employee_detail_list' %}"> {{ employee.employee_code }}</a>
+</p>
+<p>Employee Name:{{ employee.name }}</p>
+{% empty %}
+<p>No matching employees found.</p>
+{% endfor %}

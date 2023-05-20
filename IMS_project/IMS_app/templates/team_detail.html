@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>{{ team.name }}</h1>
+  <p>ID: {{ team.pk }}</p>
+  <p>Name: {{ team.name }}</p>
+  <a href="{% url 'team_update' team.pk %}">Edit</a>
+  <form action="{% url 'team_delete' team.pk %}" method="post">
+    {% csrf_token %}
+    <button type="submit">Delete</button>
+  </form>
+  <a href="{% url 'team_list' %}">Back to List</a>
+{% endblock %}
+

@@ -1,6 +1,7 @@
 from django.db import models
 
-class Department(models.Model):
+
+class Team(models.Model):
     name = models.CharField(max_length=50)
     
     def __str__(self):
@@ -15,9 +16,9 @@ class EmployeeDetail(models.Model):
     email = models.EmailField()
     address = models.CharField(max_length=100)
     city = models.CharField(max_length=50)
+    designation = models.CharField(max_length=100, null=True )
     age = models.PositiveSmallIntegerField()
-    
-    department = models.ForeignKey(Department, on_delete=models.CASCADE, related_name='employees')
+    team = models.ForeignKey(Team, on_delete=models.CASCADE, related_name='employees')
     
     def __str__(self):
         return self.name 
@@ -27,6 +28,8 @@ class EmployeeDetail(models.Model):
 class Product(models.Model):
     product_tag = models.CharField(primary_key=True, max_length=15)
     product_type = models.CharField(max_length=50)
+    manufacture_by = models.CharField(max_length=50, null=True )
+    product_capacity = models.CharField(max_length=50, null=True )
     quantity = models.PositiveIntegerField()
     purchase_date = models.DateField()
     
@@ -40,6 +43,7 @@ class EmployeeProduct(models.Model):
     product_tag = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField()
     issue_date = models.DateField()
+    assign_by= models.CharField(max_length=100, null=True )
     def __str__(self):
         return f"{self.employee_code} - {self.product_tag} - {self.quantity} - {self.issue_date}"
     class Meta:

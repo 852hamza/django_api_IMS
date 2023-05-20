@@ -1,0 +1,30 @@
+{% extends 'base.html' %} {% block content %}
+<h1>team List</h1>
+<a href="{% url 'team_create' %}">Create New team</a>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>team_name</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for team in teams %}
+    <tr>
+      <td>{{ team.id}}</td>
+      <td>{{ team.name}}</td>
+      {% comment %}
+      <td>{{ team.product_type }}</td>
+      <a href="{% url 'team_detail' team.pk %}">{{ team.name }}</a>
+      {% endcomment %}
+      <td>
+        <a href="{% url 'team_update' pk=team.pk %}">Edit</a>
+
+        <a href="{% url 'team_delete' pk=team.pk %}">Delete</a>
+      </td>
+    </tr>
+    {% empty %}
+    <li>No teams yet</li>
+    {% endfor %} {% endblock %}
+  </tbody>
+</table>

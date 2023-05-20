@@ -1,11 +1,13 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.db.models import Q
-from IMS_app.models import Department, EmployeeDetail, Product, EmployeeProduct
-from .forms import DepartmentForm, EmployeeDetailForm, ProductForm, EmployeeProductForm
+from django.db.models import Q,Sum
+from IMS_app.models import Team, EmployeeDetail, Product, EmployeeProduct
+from .forms import teamForm, EmployeeDetailForm, ProductForm, EmployeeProductForm
 
+# base view
 def base(request):
     return render(request, 'base.html')
 
+#  for collecting total data 
 def home(request):
     total_employees = EmployeeDetail.objects.count()
     total_products = Product.objects.count()
@@ -16,55 +18,66 @@ def home(request):
         'total_products': total_products,
         'total_assigned_products': total_assigned_products
     })
-# search bar
+    
+# # search bar
 def live_search(request):
     query = request.GET.get('query', '')
-    employee_results = EmployeeDetail.objects.filter(Q(employee_code=query) | Q(name__icontains=query))
-    product_results = Product.objects.filter(Q(product_tag=query) | Q(product_type__icontains=query))
-
+    
+    products = Product.objects.filter(
+        Q(product_tag__icontains=query) |
+        Q(manufacture_by__icontains=query) |
+        Q(product_capacity__icontains=query) |
+        Q(product_type__icontains=query)
+    )
+    
+    employees = EmployeeDetail.objects.filter(
+        Q(employee_code__icontains=query) |
+        Q(name__icontains=query)
+    )
+    
     context = {
-        'query': query,
-        'employee_results': employee_results,
-        'product_results': product_results
+        'products': products,
+        'employees': employees,
+        'query': query
     }
-    return render(request, 'live_search_results.html', context)
+    
+    return render(request, 'live_search.html', context)
+# team Views
+def team_list(request):
+    teams = Team.objects.all()
+    return render(request, 'team_list.html', {'teams': teams})
 
-# Department Views
-def department_list(request):
-    departments = Department.objects.all()
-    return render(request, 'department_list.html', {'departments': departments})
+def team_detail(request, pk):
+    team = get_object_or_404(Team, pk=pk)
+    return render(request, 'team_detail.html', {'team': team})
 
-def department_detail(request, pk):
-    department = get_object_or_404(Department, pk=pk)
-    return render(request, 'department_detail.html', {'department': department})
-
-def department_create(request):
+def team_create(request):
     if request.method == 'POST':
-        form = DepartmentForm(request.POST)
+        form = teamForm(request.POST)
         if form.is_valid():
-            department = form.save()
-            return redirect('department_detail', pk=department.pk)
+            team = form.save()
+            return redirect('team_detail', pk=team.pk)
     else:
-        form = DepartmentForm()
-    return render(request, 'department_form.html', {'form': form})
+        form = teamForm()
+    return render(request, 'team_form.html', {'form': form})
 
-def department_update(request, pk):
-    department = get_object_or_404(Department, pk=pk)
+def team_update(request, pk):
+    team = get_object_or_404(Team, pk=pk)
     if request.method == 'POST':
-        form = DepartmentForm(request.POST, instance=department)
+        form = teamForm(request.POST, instance=team)
         if form.is_valid():
-            department = form.save()
-            return redirect('department_detail', pk=department.pk)
+            team = form.save()
+            return redirect('team_detail', pk=team.pk)
     else:
-        form = DepartmentForm(instance=department)
-    return render(request, 'department_form.html', {'form': form})
+        form = teamForm(instance=team)
+    return render(request, 'team_form.html', {'form': form})
 
-def department_delete(request, pk):
-    department = get_object_or_404(Department, pk=pk)
+def team_delete(request, pk):
+    team = get_object_or_404(Team, pk=pk)
     if request.method == 'POST':
-        department.delete()
-        return redirect('department_list')
-    return render(request, 'department_confirm_delete.html', {'department': department})
+        team.delete()
+        return redirect('team_list')
+    return render(request, 'team_confirm_delete.html', {'team': team})
 
 # EmployeeDetail Views
 def employee_detail_list(request):
@@ -107,7 +120,10 @@ def employee_detail_delete(request, pk):
 # Product Views
 def product_list(request):
     products = Product.objects.all()
-    return render(request, 'product_list.html', {'products': products})
+    total_quantity = products.aggregate(total_quantity=Sum('quantity'))['total_quantity']
+    assigned_quantity = EmployeeProduct.objects.aggregate(assigned_quantity=Sum('quantity'))['assigned_quantity']
+    return render(request, 'product_list.html', {'products': products,'total_quantity': total_quantity,
+        'assigned_quantity': assigned_quantity,})
 
 def product_detail(request, pk):
     product = get_object_or_404(Product, pk=pk)

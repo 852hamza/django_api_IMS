@@ -47,13 +47,15 @@
           <li>
             <a href="{% url 'employee_product_list' %}">Employee_Products</a>
           </li>
-          <li><a href="{% url 'department_list' %}">Departments</a></li>
+          <li><a href="{% url 'team_list' %}">Teams</a></li>
         </ul>
       </nav>
     </header>
-    <main>{% block content %}
+    <main>
+      {% block content %}
 
-{% endblock %}</main>
+      {% endblock %}
+    </main>
     <footer>&copy; {% now "Y" %} Hamza</footer>
   </body>
-</html>
+</html

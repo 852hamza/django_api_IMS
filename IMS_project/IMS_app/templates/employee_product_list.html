@@ -1,34 +1,42 @@
-{% extends 'base.html' %}
-
-{% block content %}
-  <h1>Employee Products</h1>
-  <a href="{% url 'employee_product_create' %}">Add Employee_product Detail</a>
-  <table>
-    <thead>
-      <tr>
-        <th>Employee Code</th>
-        <th>Product Tag</th>  
-        <th>Quantity</th>
-        <th>Issue_Date</th>
-        <th></th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for employee_product in employee_products %}
-        <tr>
-          <td>{{ employee_product.employee_code }}</td>
-          <td><a href="{% url 'product_detail' employee_product.product_tag.pk %}">{{ employee_product.product_tag }}</a></td>
-          <td>{{ employee_product.quantity }}</td>
-          <td>{{ employee_product.issue_date }}</td>
-          <td><a href="{% url 'employee_product_update' pk=employee_product.pk %}">Edit</a></td>
-          <td><a href="{% url 'employee_product_delete' pk=employee_product.pk %}">Delete</a></td>
-        </tr>
-      {% empty %}
-        <tr>
-          <td colspan="6">No employee products found.</td>
-        </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-  {% endblock %}
+{% extends 'base.html' %} {% block content %}
+<h1>Employee Products</h1>
+<a href="{% url 'employee_product_create' %}">Add Employee_product Detail</a>
+<table>
+  <thead>
+    <tr>
+      <th>Employee Code</th>
+      <th>Product Tag</th>
+      <th>Quantity</th>
+      <th>Issue_Date</th>
+      <th>Action</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for employee_product in employee_products %}
+    <tr>
+      <td>{{ employee_product.employee_code }}</td>
+      <td>
+        <a href="{% url 'product_detail' employee_product.product_tag.pk %}"
+          >{{ employee_product.product_tag }}</a
+        >
+      </td>
+      <td>{{ employee_product.quantity }}</td>
+      <td>{{ employee_product.issue_date }}</td>
+      <td>
+        <a href="{% url 'employee_product_update' pk=employee_product.pk %}"
+          >Edit</a
+        >
+        <a href="{% url 'employee_product_delete' pk=employee_product.pk %}"
+          >Delete</a
+        >
+      </td>
+    </tr>
+    {% empty %}
+    <tr>
+      <td colspan="6">No employee products found.</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

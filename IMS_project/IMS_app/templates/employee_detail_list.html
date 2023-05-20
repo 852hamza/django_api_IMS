@@ -5,7 +5,7 @@
   <thead>
     <tr>
       <th>Employee_Name</th>
-      <th>Department_Name</th>
+      <th>team_Name</th>
       <th>Employee_code</th>
       <th>Action</th>
       <th></th>
@@ -16,7 +16,7 @@
     {% for employee in employees %}
     <tr>
       <td>{{ employee.name }}</td>
-      <td>{{ employee.department.name }}</td>
+      <td>{{ employee.team.name }}</td>
       <td>{{ employee.employee_code }}</td>
       <td>
         {% comment %}
@@ -25,8 +25,10 @@
         >
         {% endcomment %}
         <a href="{% url 'employee_detail_update' employee.pk %}">Edit</a>
+        {% comment %}
       </td>
       <td>
+        {% endcomment %}
         <a
           href="{% url 'employee_detail_delete' employee.pk %}"
           class="delete-link"

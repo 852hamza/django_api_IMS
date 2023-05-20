@@ -1,11 +1,13 @@
 {% extends 'base.html' %} {% block content %}
 <h1>Product List</h1>
 <a href="{% url 'product_create' %}">Create Product</a>
+<p>Total Quantity: {{ total_quantity }}</p>
+<p>Assigned Quantity: {{ assigned_quantity }}</p>
 <table>
   <thead>
     <tr>
       <th>Product_Tag</th>
-      <th>Product Tag</th>
+      <th>Product_Type</th>
       <th>Quantity</th>
       <th>Purchase_Date</th>
       <th></th>
@@ -26,8 +28,7 @@
       {% endcomment %}
       <td>
         <a href="{% url 'product_update' pk=product.pk %}">Edit</a>
-      </td>
-      <td>
+
         <a href="{% url 'product_delete' pk=product.pk %}">Delete</a>
       </td>
     </tr>
