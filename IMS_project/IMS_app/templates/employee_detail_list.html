@@ -4,9 +4,15 @@
 <table>
   <thead>
     <tr>
-      <th>Employee_Name</th>
-      <th>team_Name</th>
-      <th>Employee_code</th>
+      <th>Name</th>
+      <th>Team</th>
+      <th>Code</th>
+      <th>Number</th>
+      <th>City</th>
+      <th>Address</th>
+      <th>Email</th>
+      <th>Desigation</th>
+      <th>Age</th>
       <th>Action</th>
       <th></th>
       <th></th>
@@ -18,6 +24,12 @@
       <td>{{ employee.name }}</td>
       <td>{{ employee.team.name }}</td>
       <td>{{ employee.employee_code }}</td>
+      <td>{{ employee.number }}</td>
+      <td>{{ employee.city }}</td>
+      <td>{{ employee.address }}</td>
+      <td>{{ employee.email }}</td>
+      <td>{{ employee.designation }}</td>
+      <td>{{ employee.age }}</td>
       <td>
         {% comment %}
         <a href="{% url 'employee_detail_detail' employee.pk %}"

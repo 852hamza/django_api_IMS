@@ -21,4 +21,4 @@ class ProductForm(forms.ModelForm):
 class EmployeeProductForm(forms.ModelForm):
     class Meta:
         model = EmployeeProduct
-        fields = ('employee_code', 'product_tag', 'quantity', 'issue_date','assign_by')
+        fields = ('employee_code', 'product_tag', 'quantity', 'issue_date','assign_by','status')

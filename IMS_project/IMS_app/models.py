@@ -44,6 +44,7 @@ class EmployeeProduct(models.Model):
     quantity = models.PositiveIntegerField()
     issue_date = models.DateField()
     assign_by= models.CharField(max_length=100, null=True )
+    status= models.CharField(max_length=100, null=True )
     def __str__(self):
         return f"{self.employee_code} - {self.product_tag} - {self.quantity} - {self.issue_date}"
     class Meta:

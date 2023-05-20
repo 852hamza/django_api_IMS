@@ -12,7 +12,7 @@ class ProductAdmin(admin.ModelAdmin):
     list_display = ('product_tag', 'product_type', 'quantity', 'purchase_date')
 
 class EmployeeProductAdmin(admin.ModelAdmin):
-    list_display = ('id', 'employee_code', 'product_tag', 'quantity', 'issue_date')
+    list_display = ('id', 'employee_code', 'product_tag', 'quantity', 'issue_date','status')
 
 admin.site.register(EmployeeDetail, EmployeeDetailAdmin)
 admin.site.register(Team, teamAdmin)

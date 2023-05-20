@@ -7,7 +7,9 @@
       <th>Employee Code</th>
       <th>Product Tag</th>
       <th>Quantity</th>
+      <th>Assign_by</th>
       <th>Issue_Date</th>
+      <th>status</th>
       <th>Action</th>
       <th></th>
     </tr>
@@ -22,7 +24,9 @@
         >
       </td>
       <td>{{ employee_product.quantity }}</td>
+      <td>{{ employee_product.assign_by }}</td>
       <td>{{ employee_product.issue_date }}</td>
+      <td>{{ employee_product.status }}</td>
       <td>
         <a href="{% url 'employee_product_update' pk=employee_product.pk %}"
           >Edit</a
