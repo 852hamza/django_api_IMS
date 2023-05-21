@@ -1,11 +1,30 @@
-{% extends 'base.html' %}
-
-{% block content %}
-  <h1>{% if form.instance.pk %}Update{% else %}Create{% endif %} Employee Product</h1>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Save">
-  </form>
-  <p><a href="{% url 'employee_product_list' %}">Return to the employee product list</a></p>
+{% extends 'base.html' %} {% load static %} {% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/all_list.css' %}" />
+<h1>
+  {% if form.instance.pk %}Update{% else %}Create{% endif %} Employee Product
+</h1>
+<form method="post">
+  {% csrf_token %} {% comment %} {{ form.as_p }} {% endcomment %}
+  <table>
+    {% for field in form %}
+    <tr>
+      <th>{{ field.label_tag }}</th>
+      <td>{{ field }}</td>
+      {% if field.errors %}
+      <ul class="errorlist">
+        {% for error in field.errors %}
+        <li>{{ error }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    </tr>
+    {% endfor %}
+  </table>
+  <input type="submit" value="Save" />
+</form>
+<p>
+  <a href="{% url 'employee_product_list' %}"
+    >Return to the employee product list</a
+  >
+</p>
 {% endblock %}

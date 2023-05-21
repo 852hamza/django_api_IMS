@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h1>Delete Employee Product?</h1>
-  <p>Are you sure you want to delete the employee product "{{ employee_product.employee_code }} - {{ employee_product.product_tag }}"?</p>
+  <h2>Delete Employee Product?</h2>
+  <h3><p>Are you sure you want to delete the employee product "{{ employee_product.product_tag }}"?</p></h3>
   <form method="post">
     {% csrf_token %}
     <input type="submit" value="Yes, delete it.">

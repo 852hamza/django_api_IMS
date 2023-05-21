@@ -1,11 +1,30 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
-  <h1>Create New team</h1>
+<link rel="stylesheet" type="text/css" href="{% static 'css/all_list.css' %}" />
+  {% comment %} <h1>Create Team</h1> {% endcomment %}
+  <h1>
+  {% if form.instance.pk %}Update{% else %}Create{% endif %} Team
+</h1>
   <form method="post">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Create</button>
+    {% comment %} {{ form.as_p }} {% endcomment %}
+    <table>
+      {% for field in form %}
+      <tr>
+        <th>{{ field.label_tag }}</th>
+        <td>{{ field }}</td>
+        {% if field.errors %}
+        <ul class="errorlist">
+          {% for error in field.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </tr>
+      {% endfor %}
+    </table>
+    <button type="submit">{% if form.instance.pk %}Update{% else %}Create{% endif %} </button>
   </form>
   <a href="{% url 'team_list' %}">Back to List</a>
 {% endblock %}

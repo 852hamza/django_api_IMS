@@ -1,10 +1,26 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/all_list.css' %}" />
   <h1>Create Product</h1>
   <form method="post">
     {% csrf_token %}
-    {{ form.as_p }}
+    {% comment %} {{ form.as_p }} {% endcomment %}
+     <table>
+    {% for field in form %}
+    <tr>
+      <th>{{ field.label_tag }}</th>
+      <td>{{ field }}</td>
+      {% if field.errors %}
+      <ul class="errorlist">
+        {% for error in field.errors %}
+        <li>{{ error }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    </tr>
+    {% endfor %}
+  </table>
     <input type="submit" value="Save">
   </form>
 {% endblock %}

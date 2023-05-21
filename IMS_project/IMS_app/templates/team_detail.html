@@ -1,14 +1,31 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% load static %}{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/all_list.css' %}" />
+<h1>{{ team.name }}</h1>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{ team.pk }}</td>
+      <td>{{ team.name }}</td>
+      <td>
+        <a href="{% url 'team_update' team.pk %}">Edit</a>
+        <a href="{% url 'team_delete' team.pk %}">Delete</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-{% block content %}
-  <h1>{{ team.name }}</h1>
-  <p>ID: {{ team.pk }}</p>
-  <p>Name: {{ team.name }}</p>
-  <a href="{% url 'team_update' team.pk %}">Edit</a>
-  <form action="{% url 'team_delete' team.pk %}" method="post">
-    {% csrf_token %}
-    <button type="submit">Delete</button>
-  </form>
-  <a href="{% url 'team_list' %}">Back to List</a>
+{% comment %}
+<form action="{% url 'team_delete' team.pk %}" method="post">
+  {% csrf_token %}
+  <button type="submit">Delete</button>
+</form>
+{% endcomment %}
+<a href="{% url 'team_list' %}">Back to List</a>
 {% endblock %}
-

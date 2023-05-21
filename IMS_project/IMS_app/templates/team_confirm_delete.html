@@ -1,14 +1,18 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h1>Confirm Deletion of team</h1>
-  <p>ID: {{ team.pk }}</p>
-  <p>Name: {{ team.name }}</p>
-  <p>Are you sure you want to delete this team?</p>
+  <h2>Confirm Deletion of Team</h2>
+  <h3><p>Are you sure you want to delete this Team "{{ team.name }}"</p></h3>
+  <form method="post">
+    {% csrf_token %}
+
+    <a href="{% url 'team_detail' team.pk %}">Cancel</a>
+  </form>
+  {% comment %} <a href="{% url 'team_detail' team.pk %}">Cancel</a> {% endcomment %}
   <form action="{% url 'team_delete' team.pk %}" method="post">
     {% csrf_token %}
     <button type="submit">Delete</button>
   </form>
-  <a href="{% url 'team_detail' team.pk %}">Cancel</a>
+  {% comment %} <a href="{% url 'team_detail' team.pk %}">Cancel</a>  {% endcomment %}
 {% endblock %}
 

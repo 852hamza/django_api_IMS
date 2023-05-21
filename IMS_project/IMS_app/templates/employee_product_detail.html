@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/all_list.css' %}" />
   <h1>Employee Product Details</h1>
   <table>
     <tr>
@@ -17,7 +18,7 @@
     </tr>
     <tr>
       <th>Date:</th>
-      <td>{{ employee_product.date }}</td>
+      <td>{{ employee_product.issue_date }}</td>
     </tr>
   </table>
   <p><a href="{% url 'employee_product_update' pk=employee_product.pk %}">Update this employee product</a></p>

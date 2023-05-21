@@ -1,14 +1,30 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% load static %} {% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/all_list.css' %}" />
+<h2>{{ product.product_type }}</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Product Tag</th>
+      <th>Quantity</th>
+      <th>Purchase Date</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{ product.product_tag }}</td>
+      <td>{{ product.quantity }}</td>
+      <td>{{ product.purchase_date }}</td>
+      <td><a href="{% url 'product_update' product.pk %}">Edit</a>
+        <a href="{% url 'product_delete' product.pk %}">Delete</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-{% block content %}
-  <h1>{{ product.product_type }}</h1>
-  <p>Product Tag: {{ product.product_tag }}</p>
-  <p>Quantity: {{ product.quantity }}</p>
-  <p>Purchase Date: {{ product.purchase_date }}</p>
-  <a href="{% url 'product_update' product.pk %}">Edit</a>
-  <form method="post" action="{% url 'product_delete' product.pk %}">
-    {% csrf_token %}
-    <input type="submit" value="Delete">
-  </form>
-  <a href="{% url 'product_list' %}">Back to Product List</a>
+{% comment %} <form method="post" action="{% url 'product_delete' product.pk %}">
+  {% csrf_token %}
+  <input type="submit" value="Delete" />
+</form> {% endcomment %}
+<a href="{% url 'product_list' %}">Back to Product List</a>
 {% endblock %}
