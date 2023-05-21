@@ -1,18 +1,27 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} {% load static %}{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/all_list.css' %}" />
 <h1>Product List</h1>
 <a href="{% url 'product_create' %}">Create Product</a>
-<p>Total Quantity: {{ total_quantity }}</p>
-<p>Assigned Quantity: {{ assigned_quantity }}</p>
+<table>
+  <thead>
+    <th>Total Quantity:</th>
+    <th>Assigned Quantity:</th>
+  </thead>
+  <tbody>
+    <td>{{ total_quantity }}</td>
+    <td>{{ assigned_quantity }}</td>
+  </tbody>
+</table>
 <table>
   <thead>
     <tr>
       <th>Product_Tag</th>
       <th>Product_Type</th>
-      <th>manufacture_by</th>
-      <th>product_capacity</th>
+      <th>Manufacture_By</th>
+      <th>Product_Capacity</th>
       <th>Quantity</th>
       <th>Purchase_Date</th>
-      <th></th>
+      <th>Action</th>
       <th></th>
     </tr>
   </thead>

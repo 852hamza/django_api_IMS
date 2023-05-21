@@ -1,4 +1,5 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %}{% load static %} {% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/all_list.css' %}">
 <h1>Employee Products</h1>
 <a href="{% url 'employee_product_create' %}">Add Employee_product Detail</a>
 <table>
@@ -9,7 +10,7 @@
       <th>Quantity</th>
       <th>Assign_by</th>
       <th>Issue_Date</th>
-      <th>status</th>
+      <th>Status</th>
       <th>Action</th>
       <th></th>
     </tr>

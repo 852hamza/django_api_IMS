@@ -1,11 +1,12 @@
-{% extends 'base.html' %} {% block content %}
-<h1>team List</h1>
-<a href="{% url 'team_create' %}">Create New team</a>
+{% extends 'base.html' %}{% load static %} {% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/all_list.css' %}">
+<h1>Team List</h1>
+<a href="{% url 'team_create' %}">Create New Team</a>
 <table>
   <thead>
     <tr>
       <th>ID</th>
-      <th>team_name</th>
+      <th>Team_Name</th>
       <th>Action</th>
     </tr>
   </thead>
@@ -26,6 +27,7 @@
     </tr>
     {% empty %}
     <li>No teams yet</li>
-    {% endfor %} {% endblock %}
+    {% endfor %} 
   </tbody>
 </table>
+{% endblock %}

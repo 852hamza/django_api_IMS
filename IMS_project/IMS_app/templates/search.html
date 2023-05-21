@@ -1,4 +1,5 @@
-{% block content %}
+{% load static %}{% block content %}
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
   $(document).ready(function () {
@@ -18,15 +19,19 @@
     });
   });
 </script>
-
-<form id="search-form" method="GET">
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% static 'css/all_list.css' %}"
+/>
+<form id="search-form" class="search-box" method="GET">
   <input
     id="search-input"
     type="text"
     name="query"
     placeholder="Enter Employee Code or Product Tag"
   />
-  <button id="search-button" type="submit">Search</button>
+  <button hidden id="search-button" class="search-button" type="submit">Search</button>
 </form>
 
 <div id="search-results"></div>

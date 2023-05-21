@@ -1,21 +1,54 @@
-{% for product in products %}
-<p>
-    product Tag: <a href="{% url 'product_list' %}">{{ product.product_tag }}</a>
-</p>
-<p>Manufacture_By: {{ product.manufacture_by }}</p>
-<p>Capacity: {{ product.product_capacity }}</p>
-<p>Type: {{ product.product_type }}</p>
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/all_list.css' %}" />
+{% if products %} {% for product in products %}
+<table>
+  <thead>
+    <tr>
+      <th>Product_Tag</th>
+      <th>Manufacture_By</th>
+      <th>Capacity</th>
+      <th>Type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="{% url 'product_list' %}">{{ product.product_tag }}</a></td>
+      <td>{{ product.manufacture_by }}</td>
+      <td>{{ product.product_capacity }}</td>
+      <td>{{ product.product_type }}</td>
+    </tr>
+  </tbody>
+</table>
+
 {% empty %}
-<p>No matching products found.</p>
+<p><strong>No matching products found.</strong></p>
 {% endfor %}
 
+<br />
 <hr />
-
-{% for employee in employees %}
-<p>
-    Employee Code:<a href="{% url 'employee_detail_list' %}"> {{ employee.employee_code }}</a>
-</p>
-<p>Employee Name:{{ employee.name }}</p>
+{% else %} {% for employee in employees %}
+<table>
+  <thead>
+    <tr>
+      <th>Employee Code</th>
+      <th>Employee Name</th>
+      <th>Designation</th>
+      <th>Team</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <a href="{% url 'employee_detail_list' %}">
+          {{ employee.employee_code }}</a
+        >
+      </td>
+      <td>{{ employee.name }}</td>
+      <td>{{ employee.designation }}</td>
+      <td>{{ employee.team }}</td>
+    </tr>
+  </tbody>
+</table>
 {% empty %}
-<p>No matching employees found.</p>
-{% endfor %}
+<p><strong>No matching employees found.</strong></p>
+{% endfor %} {% endif %}
