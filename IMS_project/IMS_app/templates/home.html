@@ -1,64 +1,67 @@
 {% extends 'base.html' %} {% load static %}{% block content %}
-<link
-  rel="stylesheet"
-  type="text/css"
-  href="{% static 'css/all_list.css' %}"
-/>{% include "search.html" %}
-<table>
-  <thead>
-    <tr>
-      <th>Total Employees</th>
-      <th>Action</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>{{ total_employees }}</td>
-      <td>
-        <a
-          href="{% url 'employee_detail_list' %}"
-          class="btn btn-primary btn-sm"
-          >View</a
-        >
-      </td>
-    </tr>
-  </tbody>
+<link rel="stylesheet" type="text/css" href="{% static 'css/all_list.css' %}" />
+<style>
+  /* CSS styles for the canvas element */
+  #pieChart {
+    width: 400px;
+    height: 400px;
+    margin-top: 0%;
+    margin-left: 70%;
+    /* border: 1px solid #ccc; */
+  }
 
-  <thead>
-    <tr>
-      <th>Total Products</th>
-      <th>Action</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>{{ total_products }}</td>
-      <td>
-        <a href="{% url 'product_list' %}" class="btn btn-primary btn-sm"
-          >View</a
-        >
-      </td>
-    </tr>
-  </tbody>
+  /* Other CSS styles for the content of your home.html template */
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+  }
 
-  <thead>
-    <tr>
-      <th>Total Assigned Products</th>
-      <th>Action</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>{{ total_assigned_products }}</td>
-      <td>
-        <a
-          href="{% url 'employee_product_list' %}"
-          class="btn btn-primary btn-sm"
-          >View</a
-        >
-      </td>
-    </tr>
-  </tbody>
-</table>
+  h1 {
+    font-size: 4px;
+    color: #ff0000;
+  }
+  .count-container {
+    margin-left: 75%;
+  }
+
+  /* Add more CSS styles as needed */
+</style>
+
+<!-- <canvas id="pieChart"></canvas> -->
+<div>
+  <canvas id="pieChart"></canvas>
+  <!-- <div class="total-counts" > -->
+  <div class="count-container">
+    Employees:{{ total_employees }} | Products:{{ total_products }} | Assigned
+    Products: {{ total_assigned_products }}
+  </div>
+  <!-- </div> -->
+</div>
+
+<!-- JavaScript code for pie chart -->
+<script>
+  // Get the canvas element
+  var pieChartCanvas = document.getElementById('pieChart');
+
+  // Create the chart using Chart.js
+  var pieChart = new Chart(pieChartCanvas, {
+      type: 'pie',
+      data: {
+          labels: ['Employee', 'Product', 'Assigned Product'],
+          datasets: [{
+              data: [
+                  {{ total_employees }},
+                  {{ total_products }},
+                  {{ total_assigned_products }}
+              ],
+              backgroundColor: ['red', 'green', 'blue'] // Example colors
+          }]
+      },
+      options: {
+          // Configure the chart options as needed
+      }
+  });
+</script>
 
 {% endblock %}

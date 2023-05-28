@@ -1,5 +1,4 @@
-{% load static %}{% block content %}
-
+{% load static %}
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
   $(document).ready(function () {
@@ -12,29 +11,23 @@
         data: { query: query },
         dataType: "html",
         success: function (data) {
-          $("#search-results").html(data);
+          // Redirect to the new view with the search results
+          window.location.href = '{% url "live_search" %}?query=' + encodeURIComponent(query);
           $("#search-input").val(""); // Clear the search input field
         },
       });
+
     });
   });
 </script>
-<link
-  rel="stylesheet"
-  type="text/css"
-  href="{% static 'css/all_list.css' %}"
-/>
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/all_list.css' %}" />
 <form id="search-form" class="search-box" method="GET">
-  <input
-    id="search-input"
-    type="text"
-    name="query"
-    placeholder="Enter Employee Code or Product Tag"
-  />
+  <input id="search-input" class="search-box" action="{% url 'live_search' %}" type="text" name="query"
+    placeholder="Employee Code or Product Tag" />
   <button hidden id="search-button" class="search-button" type="submit">Search</button>
 </form>
 
 <div id="search-results"></div>
 
 <div id="search-results"></div>
-{% endblock %}

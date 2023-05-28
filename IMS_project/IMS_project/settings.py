@@ -28,8 +28,8 @@ SECRET_KEY = 'django-insecure-)2hm+a*$pk3sqzv1iralfm+uk1*=bdny9k$km#!oj54%%2s3@$
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# ALLOWED_HOSTS = ['3.110.142.100']
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -79,14 +79,14 @@ WSGI_APPLICATION = 'IMS_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        # 'ENGINE': 'django.db.backends.sqlite3',
-        # 'NAME': BASE_DIR / 'db.sqlite3',
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'ImsApp',
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
-        'USER': 'root',
-        'PASSWORD': '791933',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+        # 'ENGINE': 'django.db.backends.mysql',
+        # 'NAME': 'ImsApp',
+        # 'HOST': '127.0.0.1',
+        # 'PORT': '3306',
+        # 'USER': '',
+        # 'PASSWORD': '',
     }
 }
 
